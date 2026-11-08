@@ -1,5 +1,7 @@
 # Execution & Market-Impact Lab
 
+[![ci](https://github.com/kira-ml/execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/kira-ml/execution-lab/actions/workflows/ci.yml)
+
 **Status:** **ACTIVE — v0.1.0 built and tested.**  
 **Project type:** Applied system, not a research paper.  
 **Part of:** the four-project portfolio: Robustfolio → Epistemic DRO → **Execution Lab** → Risk Cockpit.
