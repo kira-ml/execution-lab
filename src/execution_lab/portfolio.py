@@ -30,8 +30,8 @@ import pandas as pd
 from scipy.optimize import minimize
 
 from .config import CostConfig, MarketConfig
-from .costs import half_spread_bps, impact_bps
-from .data import MarketState, Panel, compute_market_state
+from .costs import half_spread_bps
+from .data import Panel, compute_market_state
 from .schedules import Schedule, make_schedule, schedule_candidates
 from .simulator import ExecutionResult, choose_schedule, simulate_order
 
@@ -657,7 +657,6 @@ def run_backtest(
     if len(usable) == 0:
         raise PortfolioError("no ticker has complete data in the window")
     prices = panel.close[usable]
-    volumes = panel.volume[usable]
 
     rebalance_dates = month_end_dates(index, start_ts, end_ts)
     strategy_name = strategy if isinstance(strategy, str) else getattr(strategy, "__name__", "strategy")

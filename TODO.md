@@ -19,9 +19,9 @@
 - [x] Spread-proxy sensitivity: 0.5x, 0.75x, 1x, 1.5x, 2x; see `docs/SPREAD_SENSITIVITY.md`.
 - [x] No raw vendor data in the repo; manifests and data-license notes exist.
 - [x] Limitations, method, reviewer brief, and decision log exist.
-- [ ] `v0.1.0` tag/release.
-- [ ] External reviewer recorded.
-- [ ] Actual Robustfolio/Epistemic DRO weights loaded.
+- [ ] `v0.1.0` tag/release. **Local prep complete; awaiting owner approval. GitHub CLI is not installed.**
+- [ ] External reviewer recorded. **Request prepared; not sent.**
+- [ ] Actual Robustfolio/Epistemic DRO weights loaded. **Downgraded to “integration layer only” for v0.1.0.**
 
 **Known issue (confirmed and resolved):** the real-data headline originally said the naive 10-bps assumption is not conservative for a “wide-spread ETF.” VNQ is liquid; the **20.21 bps half-spread is a Corwin-Schultz proxy**, not a quote. The base rank flip is only **0.025 Sharpe** post-cost, and it **does not survive** a plausible lower spread: at 0.5x the proxy, momentum's net Sharpe is 0.429 versus equal weight 0.411, so momentum is back ahead. At 0.75x the two are effectively tied (0.410 vs 0.407). The robust finding is momentum's implementation fragility, not a reliable rank change. The README and real-data report are demoted accordingly.
 
@@ -70,9 +70,12 @@
 
 ### 2.1 Release `v0.1.0`
 
-- [ ] Confirm working tree clean and tests green.
-- [ ] Confirm no raw data or secrets in the release.
-- [ ] Create tag `v0.1.0`.
+- [x] Confirm working tree clean and tests green.
+- [x] Confirm no raw data or secrets in the release.
+- [x] Confirm release notes include the synthetic headline, aggregate real-data
+      check, spread-sensitivity result and noise caveat, provenance sentence, and
+      known gaps.
+- [ ] Create tag `v0.1.0`. **Awaiting owner approval.**
 - [ ] Create GitHub release with:
   - synthetic demo report and figures;
   - aggregate real-data tables and figures;
@@ -81,11 +84,17 @@
 - [ ] Add repo topics: `execution`, `market-impact`, `transaction-costs`, `portfolio-construction`, `quantitative-finance`, `reproducibility`.
 - [ ] Verify release links and asset downloads.
 
-**Owner approval required for the public tag/release.**
+**Owner approval required for the public tag/release.** Local preparation is
+complete. `gh` is not installed, so the release commands cannot be run as written
+until the GitHub CLI is available or the release is done through the browser/API
+with approval.
 
 ### 2.2 External review
 
-- [ ] Send one request to an execution/microstructure/quant reviewer using `docs/REVIEW.md`.
+- [x] Finalize `docs/REVIEW.md` and the ready-to-send request.
+- [x] Add or update the tracking table with date, request status, reviewer,
+      response, and strongest objection.
+- [ ] Send one request to an execution/microstructure/quant reviewer using `docs/REVIEW.md`. **Awaiting owner approval; not sent.**
 - [ ] Ask the specific questions:
   - Is the Corwin-Schultz proxy appropriate for ETFs, or does it overstate spread?
   - Is arrival-price timing risk the right benchmark?
@@ -95,16 +104,18 @@
 - [ ] If no response after two follow-ups, record the attempt and freeze with “external review requested; none recorded.”
 
 **Acceptance:** one external objection recorded, or a documented attempt.
+**Current status:** request prepared and tracked; no contact made.
 
 ---
 
 ## 3. P1 — Engineering hygiene
 
-- [ ] Add `ruff` to `[project.optional-dependencies].dev` and run it.
-- [ ] Add a lint step to CI.
-- [ ] Optionally add `mypy` only if it does not create noise; do not block on it.
-- [ ] Keep CI on Python 3.10–3.12.
-- [ ] Re-run the demo on CI and confirm the artifact upload.
+- [x] Add `ruff` to `[project.optional-dependencies].dev` and run it.
+- [x] Add a lint step to CI (`python -m ruff check .`).
+- [x] Do **not** add `mypy`; it would create noise without changing a decision.
+- [x] Keep CI on Python 3.10–3.12.
+- [x] Re-run the demo on CI and confirm the artifact upload.
+- [x] `ruff check .` passes locally with the conservative rule set (E4/E7/E9/F/I).
 
 ---
 
@@ -133,13 +144,14 @@
 ## 6. Definition of done
 
 - [x] Spread sensitivity added; rank-flip robustness stated honestly. **The flip is not robust.**
-- [ ] Actual weights integrated **or** integration claim explicitly downgraded.
+- [x] Actual weights integrated **or** integration claim explicitly downgraded. **Downgraded to “integration layer only.”**
 - [x] Provenance sentence added; holdout not implicated.
-- [ ] `v0.1.0` release exists and assets download.
-- [ ] External reviewer recorded or documented attempt.
-- [ ] Tests, CI, and demo green.
-- [ ] README headline matches the evidence.
-- [ ] Repo frozen; no endless polishing.
+- [ ] `v0.1.0` release exists and assets download. **Awaiting owner approval.**
+- [ ] External reviewer recorded or documented attempt. **Request prepared; not sent.**
+- [x] Tests, CI, and demo green.
+- [x] README headline matches the evidence.
+- [x] Lint passes and runs in CI.
+- [ ] Repo frozen; no endless polishing. **Ready to freeze after release/reviewer decisions.**
 
 ---
 

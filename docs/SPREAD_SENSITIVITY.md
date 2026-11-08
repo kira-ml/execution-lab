@@ -38,9 +38,9 @@ The real-data check uses the Corwin-Schultz high-low estimator as the spread pro
 
 ## Verdict
 
-The flip does **not** survive the full multiplier grid. It disappears at 0.5× the
-proxy and is effectively a tie at 0.75×. The honest headline is therefore that
-momentum is implementation-fragile, not that the rank order is robustly changed.
+The flip does **not** survive the full multiplier grid. The observed ordering reverses at 0.5× the proxy and is effectively a tie at 0.75×. The honest headline is therefore that momentum is implementation-fragile, not that the rank order is robustly changed.
+
+The 0.5x and 1x gaps are both small relative to sampling error for a 13-year sample; the defensible claim is that the ordering is indistinguishable across the plausible spread range, while momentum's cost drag is robust.
 
 ## What this does and does not settle
 

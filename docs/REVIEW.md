@@ -120,7 +120,8 @@ the licensed snapshot.
 
 ## Record
 
-| Date | Request | Response |
-|---|---|---|
-| 2026-11-08 | Initial reviewer brief prepared | No reviewer yet |
-| 2026-11-08 | Spread-proxy sensitivity completed; rank flip demoted | No reviewer yet |
+| Date | Request | Status | Reviewer | Response | Strongest objection |
+|---|---|---|---|---|---|
+| 2026-11-08 | Initial reviewer brief prepared | Not sent | — | — | — |
+| 2026-11-08 | Spread-proxy sensitivity completed; rank flip demoted | Not sent | — | — | — |
+| 2026-11-08 | Request finalized; awaiting owner approval to send | Prepared, not sent | — | — | — |

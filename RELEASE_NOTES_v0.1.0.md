@@ -32,6 +32,13 @@ momentum's implementation fragility, not a reliable rank flip. The VNQ
 Corwin-Schultz half-spread proxy is about 20 bps, but it is a proxy, not a
 quote. The raw snapshot is not redistributed.
 
+The 0.5x and 1x gaps are both small relative to sampling error for a 13-year
+sample; the defensible claim is that the ordering is indistinguishable across
+the plausible spread range, while momentum's cost drag is robust.
+
+**Provenance:** this uses the separate Robustfolio ETF snapshot; it does not
+evaluate or consume the Epistemic DRO 2025–2026 holdout.
+
 ## What is not claimed
 
 - No live trading, routing, or brokerage connection.

@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Date:** 2026-11-08  
-**Status:** built, tested, demo-generated; external review and GitHub upload pending.
+**Status:** built, tested, documented, and public; `v0.1.0` tag/release and external review pending.
 
 ---
 
@@ -63,8 +63,7 @@ not identified by the data.
 ## Proposed / pending
 
 - External reviewer with execution or microstructure experience.
-- Tagged `v0.1.0` GitHub release.
-- Public GitHub repository upload.
+- Tagged `v0.1.0` GitHub release. **Awaiting owner approval; GitHub CLI is not installed.**
 - External read of `docs/REAL_DATA_CHECK.md` and
   `docs/SPREAD_SENSITIVITY.md`; the local run and the robustness check are
   complete.
@@ -94,15 +93,17 @@ model-conditional result, not a tradable claim.
 ## GitHub
 
 - **Public repository:** https://github.com/kira-ml/execution-lab
-- **Initial commit:** `37fcffa` — `Initial commit: execution-lab v0.1.0`
-- **CI:** passed on Python 3.10, 3.11, and 3.12; the 3.12 job also ran the demo
-  and uploaded the artefact.
-- **Badge commit:** `ffce00c` — `docs: add CI badge`
+- **Current HEAD:** `9d279a3` — `docs: add review request and tidy spread-sensitivity verdict`
+- **Tag:** none
+- **Release:** none (awaiting owner approval)
+- **CI:** green at HEAD on Python 3.10, 3.11, and 3.12; the 3.12 job ran the
+  demo and uploaded the artefact.
 - **Local branch:** `main`, tracking `origin/main`.
 
 The README, docs, and figures render on GitHub. The repository is public and
 contains only the synthetic demo data; the licensed real-data snapshot is not
-included.
+included. The release commands require GitHub CLI, which is not installed in the
+current environment.
 
 ---
 
@@ -115,5 +116,6 @@ included.
 - [x] Limitations and data-licensing constraints stated.
 - [ ] One external reviewer/user recorded, or a documented attempt.
 - [x] Release-ready brief.
-- [ ] Tagged release and public repository.
+- [x] Public repository exists and is synced.
+- [ ] Tagged `v0.1.0` release.
 - [ ] Frozen; no endless polishing.

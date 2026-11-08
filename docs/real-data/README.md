@@ -49,6 +49,13 @@ capacity forecast).
 | `fig_spread_sensitivity.png` | net Sharpe vs spread multiplier |
 | `fig_*.png` | aggregate figures |
 
+## Spread-sensitivity outputs
+
+The `spread_sensitivity*.csv` files and `fig_spread_sensitivity.png` are generated
+by `scripts/run_spread_sensitivity.py`, not by `scripts/run_real_data.py`. They are
+listed separately from `manifest.json`; the manifest describes the base real-data
+run only.
+
 ## Caveat
 
 This is a daily-data exercise. The spread is a high-low proxy, `k` is not

@@ -15,6 +15,10 @@ from pathlib import Path
 
 import pandas as pd
 
+# ``run_real_data`` lives next to this script. Running the script directly puts
+# this directory on sys.path, so the import is intentional and local.
+from run_real_data import START, load_snapshot
+
 from execution_lab.config import CostConfig, MarketConfig
 from execution_lab.demo import STRATEGIES
 from execution_lab.portfolio import CostModel, run_ranking_experiment
@@ -24,10 +28,6 @@ from execution_lab.report import (
     write_csv,
     write_text,
 )
-
-# ``run_real_data`` lives next to this script. Running the script directly puts
-# this directory on sys.path, so the import is intentional and local.
-from run_real_data import START, load_snapshot
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
@@ -111,10 +111,19 @@ def main() -> None:
         )
     else:
         formatted = ", ".join(f"{value:g}×" for value in disappears_at)
+        near_ties = gaps.loc[
+            gaps["equal_weight_minus_momentum"].abs() < 0.01, "spread_multiplier"
+        ].tolist()
+        tie_note = ""
+        if near_ties:
+            tie_note = " and is effectively a tie at " + ", ".join(
+                f"{value:g}×" for value in near_ties
+            )
         verdict = (
-            "The flip does **not** survive the full multiplier grid. It disappears at "
-            f"{formatted} the proxy. The honest headline is therefore that momentum is "
-            "implementation-fragile, not that the rank order is robustly changed."
+            "The flip does **not** survive the full multiplier grid. The observed "
+            f"ordering reverses at {formatted} the proxy{tie_note}. The honest headline "
+            "is therefore that momentum is implementation-fragile, not that the rank "
+            "order is robustly changed."
         )
 
     lines = [
@@ -146,6 +155,10 @@ def main() -> None:
         "## Verdict",
         "",
         verdict,
+        "",
+        "The 0.5x and 1x gaps are both small relative to sampling error for a 13-year "
+        "sample; the defensible claim is that the ordering is indistinguishable across "
+        "the plausible spread range, while momentum's cost drag is robust.",
         "",
         "## What this does and does not settle",
         "",

@@ -29,7 +29,6 @@ import pandas as pd
 from . import __version__
 from .calibration import bootstrap_k, fit_k
 from .config import (
-    DEFAULT_K_GRID,
     DEFAULT_PARTICIPATION_GRID,
     CostConfig,
     MarketConfig,
