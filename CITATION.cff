@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+type: software
+title: "execution-lab: a transparent execution-cost and market-impact laboratory"
+abstract: >-
+  A small, reproducible laboratory for asking whether a portfolio edge survives
+  realistic transaction costs. It decomposes cost into half-spread, commission,
+  square-root market impact, and timing risk; compares immediate, TWAP, VWAP, and
+  POV schedules; and shows how strategy rankings change with order size, impact
+  coefficient, and assets under management. The checked-in demo uses a synthetic
+  ETF panel. The model is a teaching and engineering tool, not a live execution
+  simulator, and it makes no tradable-alpha claim.
+authors:
+  - family-names: "Talingting"
+    given-names: "Ken Ira Lacson"
+version: "0.1.0"
+date-released: "2026-11-08"
+license: MIT
+repository-code: "https://github.com/kira-ml/execution-lab"
+keywords:
+  - execution
+  - market impact
+  - transaction costs
+  - portfolio construction
+  - reproducibility

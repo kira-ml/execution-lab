@@ -1,0 +1,90 @@
+{
+  "package": "execution-lab",
+  "version": "0.1.0",
+  "python": "3.10.0",
+  "numpy": "1.26.4",
+  "pandas": "2.3.0",
+  "data": "synthetic ETF panel, seed 20261108",
+  "panel_hash": "2d232864f1f92561",
+  "start": "2018-12-31",
+  "end": "2024-12-30",
+  "aum": 250000000.0,
+  "seed": 20261108,
+  "cost_config": {
+    "commission_bps": 0.5,
+    "impact_k": 0.5,
+    "impact_exponent": 0.5,
+    "impact_mode": "per_slice",
+    "risk_aversion": 0.05,
+    "fixed_bps": 10.0,
+    "participation_cap": 0.25
+  },
+  "market_config": {
+    "adv_window": 20,
+    "vol_window": 20,
+    "spread_window": 20,
+    "spread_floor_bps": 1.0,
+    "spread_cap_bps": 100.0
+  },
+  "k_grid": [
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "participation_grid": [
+    0.001,
+    0.005,
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.3
+  ],
+  "aum_grid": [
+    25000000.0,
+    100000000.0,
+    250000000.0,
+    500000000.0,
+    1000000000.0,
+    2500000000.0,
+    5000000000.0,
+    10000000000.0,
+    25000000000.0,
+    50000000000.0
+  ],
+  "strategies": [
+    "equal_weight",
+    "inverse_vol",
+    "min_variance",
+    "momentum",
+    "sixty_forty"
+  ],
+  "outputs": [
+    "aum_ranks.csv",
+    "aum_sensitivity.csv",
+    "break_even_k.csv",
+    "cost_curve.csv",
+    "cost_decomposition.csv",
+    "fig_aum_sensitivity.png",
+    "fig_cost_curve.png",
+    "fig_cost_decomposition.png",
+    "fig_k_sensitivity.png",
+    "fig_ranking_heatmap.png",
+    "fig_schedule_frontier.png",
+    "fragility.csv",
+    "k_sensitivity.csv",
+    "manifest.json",
+    "optimal_by_risk_aversion.csv",
+    "order_k_sensitivity.csv",
+    "order_schedule_comparison.csv",
+    "rank_changes.csv",
+    "ranking.csv",
+    "ranking_ranks.csv",
+    "ranking_sharpes.csv",
+    "report.md",
+    "schedule_frontier.csv"
+  ]
+}

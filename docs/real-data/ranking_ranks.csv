@@ -1,0 +1,6 @@
+strategy,fixed_10bps,gross,impact_immediate,impact_optimal,impact_pov_10pct,impact_twap_5d,impact_vwap_5d,spread_plus_fee
+equal_weight,3,3,2,2,2,2,2,3
+inverse_vol,4,4,4,4,4,4,4,4
+min_variance,5,5,5,5,5,5,5,5
+momentum,2,2,3,3,3,3,3,2
+sixty_forty,1,1,1,1,1,1,1,1

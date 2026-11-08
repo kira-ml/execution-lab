@@ -1,0 +1,54 @@
+# execution-lab v0.1.0
+
+**Release date:** 2026-11-08
+
+A transparent execution-cost and market-impact laboratory for ETF portfolios.
+This is a research and engineering tool, not a live execution system.
+
+## Highlights
+
+- Cost decomposition: half-spread + commission + square-root impact + timing risk.
+- Schedule comparison: immediate, TWAP, VWAP, and POV, with a risk-aversion
+  frontier.
+- Portfolio integration: target weights → trades → costs → net returns.
+- Ranking sensitivity across cost models, impact coefficient `k`, and AUM.
+- Break-even `k` and capacity stress, so the output is a range rather than a
+  point estimate.
+- One-command synthetic demo, 75 tests, CI, and a one-page brief.
+
+## Demo headline (synthetic)
+
+A 10%-of-ADV order in the least-liquid demo asset costs 16.12 bps under a 5-day
+VWAP, versus 31.12 bps immediate, at a timing risk of 221.41 bps versus zero. At
+`λ = 0.05` the 5-day VWAP wins; at `λ ≥ 0.10` immediate wins. The ranking is
+stable at $250M AUM but momentum loses its absolute edge as AUM rises.
+
+## Real-data check (aggregate only)
+
+On the owner's licensed 12-ETF snapshot (2013–2026), realistic costs change the
+ranking: equal weight overtakes momentum. The VNQ half-spread proxy is about
+20 bps, so the naive 10-bps assumption is not conservative. The raw snapshot is
+not redistributed.
+
+## What is not claimed
+
+- No live trading, routing, or brokerage connection.
+- No tradable alpha.
+- No order-book realism.
+- No identified `k` from daily data.
+- The synthetic demo is not an empirical claim about real ETFs.
+
+## Known gaps
+
+- External review is pending.
+- The actual Robustfolio walk-forward weights are not loaded; the target-weight
+  loader is ready for them.
+- The real-data check is aggregate-only and model-conditional.
+
+## Reproduce
+
+```bash
+pip install -e ".[dev]"
+python -m pytest
+execution-lab demo --out results/demo
+```

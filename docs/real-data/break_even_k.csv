@@ -1,0 +1,6 @@
+strategy,fixed_10bps_sharpe,break_even_k_vs_fixed,break_even_k_vs_zero
+equal_weight,0.41157516607513417,,
+inverse_vol,0.24210444523954316,,
+min_variance,-0.13471715251990415,,
+momentum,0.45476628788188106,,5.376091003417969
+sixty_forty,0.6562634519036513,,
