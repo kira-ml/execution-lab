@@ -97,8 +97,30 @@ the licensed snapshot.
 
 ---
 
+## Ready-to-send request
+
+**Subject:** Review request — execution-cost lab (30–45 minutes)
+
+> I have built a small, reproducible execution-cost laboratory for ETF
+> portfolios: https://github.com/kira-ml/execution-lab
+>
+> It decomposes cost into half-spread, commission, square-root impact, and
+> timing risk; compares immediate, TWAP, VWAP, and POV; and shows how a strategy
+> ranking changes with impact and AUM. The public demo is synthetic. A separate
+> aggregate-only real-data check is included.
+>
+> I am looking for a 30–45 minute review of the accounting and the claims, not
+> an endorsement of a strategy. The specific questions are in
+> `docs/REVIEW.md`: is the Corwin-Schultz proxy appropriate for ETFs, is
+> arrival-price timing risk the right benchmark, and is the square-root `k`
+> range reasonable?
+>
+> If you can, please point to the strongest objection or the first place the
+> accounting breaks. A short written response is enough.
+
 ## Record
 
 | Date | Request | Response |
 |---|---|---|
 | 2026-11-08 | Initial reviewer brief prepared | No reviewer yet |
+| 2026-11-08 | Spread-proxy sensitivity completed; rank flip demoted | No reviewer yet |

@@ -99,6 +99,10 @@ def main() -> None:
 
     survives = bool(gaps["equal_weight_ahead"].all())
     disappears_at = gaps.loc[~gaps["equal_weight_ahead"], "spread_multiplier"].tolist()
+    gap_view = gaps.copy()
+    gap_view["equal_weight_ahead"] = gap_view["equal_weight_ahead"].map(
+        {True: "yes", False: "no"}
+    )
     if survives:
         verdict = (
             "The equal-weight-over-momentum flip survives every multiplier in the "
@@ -106,11 +110,11 @@ def main() -> None:
             "impact model and the daily-data spread proxy."
         )
     else:
+        formatted = ", ".join(f"{value:g}×" for value in disappears_at)
         verdict = (
             "The flip does **not** survive the full multiplier grid. It disappears at "
-            f"spread multiplier(s) {disappears_at}. The honest headline is therefore "
-            "that momentum is implementation-fragile, not that the rank order is "
-            "robustly changed."
+            f"{formatted} the proxy. The honest headline is therefore that momentum is "
+            "implementation-fragile, not that the rank order is robustly changed."
         )
 
     lines = [
@@ -135,7 +139,7 @@ def main() -> None:
         "",
         "## Equal weight vs momentum",
         "",
-        md_table(gaps, floatfmt=".3f"),
+        md_table(gap_view, floatfmt=".3f"),
         "",
         "![Spread sensitivity](real-data/fig_spread_sensitivity.png)",
         "",

@@ -28,17 +28,19 @@ The real-data check uses the Corwin-Schultz high-low estimator as the spread pro
 
 | spread_multiplier | equal_weight_sharpe | momentum_sharpe | equal_weight_minus_momentum | equal_weight_rank | momentum_rank | equal_weight_ahead |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0.500 | 0.411 | 0.429 | -0.018 | 3 | 2 | 0 |
-| 0.750 | 0.410 | 0.407 | 0.003 | 2 | 3 | 1 |
-| 1.000 | 0.409 | 0.384 | 0.024 | 2 | 3 | 1 |
-| 1.500 | 0.407 | 0.340 | 0.067 | 2 | 3 | 1 |
-| 2.000 | 0.405 | 0.306 | 0.100 | 2 | 3 | 1 |
+| 0.500 | 0.411 | 0.429 | -0.018 | 3 | 2 | no |
+| 0.750 | 0.410 | 0.407 | 0.003 | 2 | 3 | yes |
+| 1.000 | 0.409 | 0.384 | 0.024 | 2 | 3 | yes |
+| 1.500 | 0.407 | 0.340 | 0.067 | 2 | 3 | yes |
+| 2.000 | 0.405 | 0.306 | 0.100 | 2 | 3 | yes |
 
 ![Spread sensitivity](real-data/fig_spread_sensitivity.png)
 
 ## Verdict
 
-The flip does **not** survive the full multiplier grid. It disappears at spread multiplier(s) [0.5]. The honest headline is therefore that momentum is implementation-fragile, not that the rank order is robustly changed.
+The flip does **not** survive the full multiplier grid. It disappears at 0.5× the
+proxy and is effectively a tie at 0.75×. The honest headline is therefore that
+momentum is implementation-fragile, not that the rank order is robustly changed.
 
 ## What this does and does not settle
 
