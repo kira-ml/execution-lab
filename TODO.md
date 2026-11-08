@@ -19,8 +19,8 @@
 - [x] Spread-proxy sensitivity: 0.5x, 0.75x, 1x, 1.5x, 2x; see `docs/SPREAD_SENSITIVITY.md`.
 - [x] No raw vendor data in the repo; manifests and data-license notes exist.
 - [x] Limitations, method, reviewer brief, and decision log exist.
-- [ ] `v0.1.0` tag/release. **Local prep complete; awaiting owner approval. GitHub CLI is not installed.**
-- [ ] External reviewer recorded. **Request prepared; not sent.**
+- [x] `v0.1.0` tag/release. **Published:** https://github.com/kira-ml/execution-lab/releases/tag/v0.1.0
+- [ ] External reviewer recorded. **Owner approved sending; no recipient specified yet.**
 - [ ] Actual Robustfolio/Epistemic DRO weights loaded. **Downgraded to “integration layer only” for v0.1.0.**
 
 **Known issue (confirmed and resolved):** the real-data headline originally overclaimed on the spread. VNQ is liquid; the **20.21 bps half-spread is a Corwin-Schultz proxy**, not a quote. The base rank flip is only **0.025 Sharpe** post-cost, and it **does not survive** a plausible lower spread: at 0.5x the proxy, momentum's net Sharpe is 0.429 versus equal weight 0.411, so momentum is back ahead. At 0.75x the two are effectively tied (0.410 vs 0.407). The robust finding is momentum's implementation fragility, not a reliable rank change. The README and real-data report are demoted accordingly.
@@ -75,26 +75,25 @@
 - [x] Confirm release notes include the synthetic headline, aggregate real-data
       check, spread-sensitivity result and noise caveat, provenance sentence, and
       known gaps.
-- [ ] Create tag `v0.1.0`. **Awaiting owner approval.**
-- [ ] Create GitHub release with:
+- [x] Create tag `v0.1.0`.
+- [x] Create GitHub release with:
   - synthetic demo report and figures;
   - aggregate real-data tables and figures;
   - method/limitations/reviewer brief;
   - no raw vendor data.
-- [ ] Add repo topics: `execution`, `market-impact`, `transaction-costs`, `portfolio-construction`, `quantitative-finance`, `reproducibility`.
-- [ ] Verify release links and asset downloads.
+- [x] Add repo topics: `execution`, `market-impact`, `transaction-costs`, `portfolio-construction`, `quantitative-finance`, `reproducibility`.
+- [x] Verify release links and asset downloads.
 
-**Owner approval required for the public tag/release.** Local preparation is
-complete. `gh` is not installed, so the release commands cannot be run as written
-until the GitHub CLI is available or the release is done through the browser/API
-with approval.
+**Release published:** https://github.com/kira-ml/execution-lab/releases/tag/v0.1.0
+The release was published through the GitHub web UI because `gh` is not installed.
 
 ### 2.2 External review
 
 - [x] Finalize `docs/REVIEW.md` and the ready-to-send request.
 - [x] Add or update the tracking table with date, request status, reviewer,
       response, and strongest objection.
-- [ ] Send one request to an execution/microstructure/quant reviewer using `docs/REVIEW.md`. **Awaiting owner approval; not sent.**
+- [x] Owner approved sending the review request.
+- [ ] Send one request to an execution/microstructure/quant reviewer using `docs/REVIEW.md`. **Approved; no recipient specified yet.**
 - [ ] Ask the specific questions:
   - Is the Corwin-Schultz proxy appropriate for ETFs, or does it overstate spread?
   - Is arrival-price timing risk the right benchmark?
@@ -146,12 +145,12 @@ with approval.
 - [x] Spread sensitivity added; rank-flip robustness stated honestly. **The flip is not robust.**
 - [x] Actual weights integrated **or** integration claim explicitly downgraded. **Downgraded to “integration layer only.”**
 - [x] Provenance sentence added; holdout not implicated.
-- [ ] `v0.1.0` release exists and assets download. **Awaiting owner approval.**
-- [ ] External reviewer recorded or documented attempt. **Request prepared; not sent.**
+- [x] `v0.1.0` release exists and assets download. **Published at** https://github.com/kira-ml/execution-lab/releases/tag/v0.1.0
+- [ ] External reviewer recorded or documented attempt. **Approved to send; no recipient specified yet.**
 - [x] Tests, CI, and demo green.
 - [x] README headline matches the evidence.
 - [x] Lint passes and runs in CI.
-- [ ] Repo frozen; no endless polishing. **Ready to freeze after release/reviewer decisions.**
+- [ ] Repo frozen; no endless polishing. **Code and docs are frozen; only the external review request remains.**
 
 ---
 

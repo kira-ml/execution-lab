@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Date:** 2026-11-08  
-**Status:** built, tested, documented, and public; `v0.1.0` tag/release and external review pending.
+**Status:** built, tested, documented, public, and released as `v0.1.0`; external review pending.
 
 ---
 
@@ -64,8 +64,8 @@ not identified by the data.
 
 ## Proposed / pending
 
-- External reviewer with execution or microstructure experience.
-- Tagged `v0.1.0` GitHub release. **Awaiting owner approval; GitHub CLI is not installed.**
+- External reviewer with execution or microstructure experience. **Owner approved
+  sending; no recipient has been specified yet.**
 - External read of `docs/REAL_DATA_CHECK.md` and
   `docs/SPREAD_SENSITIVITY.md`; the local run and the robustness check are
   complete.
@@ -95,20 +95,21 @@ model-conditional result, not a tradable claim.
 ## GitHub
 
 - **Public repository:** https://github.com/kira-ml/execution-lab
-- **Verified content HEAD:** `047c525` — `chore: finish local release prep; add lint and noise caveat`
-- **Tag:** none
-- **Release:** none (awaiting owner approval)
-- **CI:** green at `047c525` on Python 3.10, 3.11, and 3.12; lint passed on all
+- **Verified content HEAD:** `85a9449` — `docs: record final local state and lint pass`
+- **Tag:** `v0.1.0`
+- **Release:** https://github.com/kira-ml/execution-lab/releases/tag/v0.1.0
+- **CI:** green at `85a9449` on Python 3.10, 3.11, and 3.12; lint passed on all
   three, tests passed on all three, and the 3.12 job ran the demo and uploaded
   the artefact.
+- **Topics:** `execution`, `market-impact`, `transaction-costs`,
+  `portfolio-construction`, `quantitative-finance`, `reproducibility`
 - **Local branch:** `main`, tracking `origin/main`.
-- **Bookkeeping:** this file is committed on top of `047c525`; the content commit
-  remains the verified one.
+- **Release path:** published through the GitHub web UI because `gh` is not
+  installed in the current environment.
 
 The README, docs, and figures render on GitHub. The repository is public and
 contains only the synthetic demo data; the licensed real-data snapshot is not
-included. The release commands require GitHub CLI, which is not installed in the
-current environment.
+included.
 
 ---
 
@@ -122,5 +123,5 @@ current environment.
 - [ ] One external reviewer/user recorded, or a documented attempt.
 - [x] Release-ready brief.
 - [x] Public repository exists and is synced.
-- [ ] Tagged `v0.1.0` release.
-- [ ] Frozen; no endless polishing.
+- [x] Tagged `v0.1.0` release.
+- [ ] Frozen; no endless polishing. **Code is frozen; only external review and the final freeze decision remain.**

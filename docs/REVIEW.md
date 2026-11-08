@@ -125,3 +125,4 @@ the licensed snapshot.
 | 2026-11-08 | Initial reviewer brief prepared | Not sent | — | — | — |
 | 2026-11-08 | Spread-proxy sensitivity completed; rank flip demoted | Not sent | — | — | — |
 | 2026-11-08 | Request finalized; awaiting owner approval to send | Prepared, not sent | — | — | — |
+| 2026-11-09 | Owner approved sending | Approved; no recipient specified | — | — | — |
