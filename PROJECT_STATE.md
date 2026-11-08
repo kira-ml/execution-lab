@@ -35,6 +35,8 @@ These are facts from commands that were actually run:
 - Point-in-time market state on a truncated panel equals the full-panel state.
 - The analytic `k` decomposition matches a direct cost run.
 - The project builds and imports as an editable package.
+- `python -m ruff check .` passes with the conservative rule set
+  (`E4`, `E7`, `E9`, `F`, `I`); CI runs lint before tests.
 - The local real-data check completed on the owner's licensed 12-ETF snapshot
   (2013-01-31 to 2026-09-29), producing aggregate-only tables in
   `docs/real-data/` and `docs/REAL_DATA_CHECK.md`. At the base spread proxy,
@@ -93,12 +95,15 @@ model-conditional result, not a tradable claim.
 ## GitHub
 
 - **Public repository:** https://github.com/kira-ml/execution-lab
-- **Current HEAD:** `9d279a3` — `docs: add review request and tidy spread-sensitivity verdict`
+- **Verified content HEAD:** `047c525` — `chore: finish local release prep; add lint and noise caveat`
 - **Tag:** none
 - **Release:** none (awaiting owner approval)
-- **CI:** green at HEAD on Python 3.10, 3.11, and 3.12; the 3.12 job ran the
-  demo and uploaded the artefact.
+- **CI:** green at `047c525` on Python 3.10, 3.11, and 3.12; lint passed on all
+  three, tests passed on all three, and the 3.12 job ran the demo and uploaded
+  the artefact.
 - **Local branch:** `main`, tracking `origin/main`.
+- **Bookkeeping:** this file is committed on top of `047c525`; the content commit
+  remains the verified one.
 
 The README, docs, and figures render on GitHub. The repository is public and
 contains only the synthetic demo data; the licensed real-data snapshot is not

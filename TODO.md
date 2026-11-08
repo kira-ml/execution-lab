@@ -23,7 +23,7 @@
 - [ ] External reviewer recorded. **Request prepared; not sent.**
 - [ ] Actual Robustfolio/Epistemic DRO weights loaded. **Downgraded to “integration layer only” for v0.1.0.**
 
-**Known issue (confirmed and resolved):** the real-data headline originally said the naive 10-bps assumption is not conservative for a “wide-spread ETF.” VNQ is liquid; the **20.21 bps half-spread is a Corwin-Schultz proxy**, not a quote. The base rank flip is only **0.025 Sharpe** post-cost, and it **does not survive** a plausible lower spread: at 0.5x the proxy, momentum's net Sharpe is 0.429 versus equal weight 0.411, so momentum is back ahead. At 0.75x the two are effectively tied (0.410 vs 0.407). The robust finding is momentum's implementation fragility, not a reliable rank change. The README and real-data report are demoted accordingly.
+**Known issue (confirmed and resolved):** the real-data headline originally overclaimed on the spread. VNQ is liquid; the **20.21 bps half-spread is a Corwin-Schultz proxy**, not a quote. The base rank flip is only **0.025 Sharpe** post-cost, and it **does not survive** a plausible lower spread: at 0.5x the proxy, momentum's net Sharpe is 0.429 versus equal weight 0.411, so momentum is back ahead. At 0.75x the two are effectively tied (0.410 vs 0.407). The robust finding is momentum's implementation fragility, not a reliable rank change. The README and real-data report are demoted accordingly.
 
 ---
 
@@ -39,7 +39,7 @@
 - [x] Add a figure: `docs/real-data/fig_spread_sensitivity.png`.
 - [x] Update `docs/REAL_DATA_CHECK.md` with the robustness result.
 - [x] Update the README headline: the flip is **not robust**; demoted to a conditional secondary result.
-- [x] Do not call VNQ a “wide-spread ETF” without quoted-spread evidence.
+- [x] Do not make a wide-spread claim about VNQ without quoted-spread evidence.
 
 **Acceptance:** a reader can see whether the rank flip is robust to the largest uncertainty in the model. **Result:** it is not; the flip disappears at 0.5× and is a tie at 0.75×.
 
