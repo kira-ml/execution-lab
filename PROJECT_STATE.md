@@ -86,10 +86,16 @@ model-conditional result, not a tradable claim.
 
 ## GitHub
 
-The repository has not been uploaded. The in-app browser was opened at
-`https://github.com/new`; GitHub redirected to the sign-in page, and the owner
-will log in and create the public repository. The local directory is ready for a
-first commit once the real-data check and final docs are in place.
+- **Public repository:** https://github.com/kira-ml/execution-lab
+- **Initial commit:** `37fcffa` — `Initial commit: execution-lab v0.1.0`
+- **CI:** passed on Python 3.10, 3.11, and 3.12; the 3.12 job also ran the demo
+  and uploaded the artefact.
+- **Badge commit:** `ffce00c` — `docs: add CI badge`
+- **Local branch:** `main`, tracking `origin/main`.
+
+The README, docs, and figures render on GitHub. The repository is public and
+contains only the synthetic demo data; the licensed real-data snapshot is not
+included.
 
 ---
 

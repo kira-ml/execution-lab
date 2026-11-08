@@ -189,6 +189,7 @@ and redistributed under the same license. Vendor market data is not included.
 
 ## Links
 
+- [Repository](https://github.com/kira-ml/execution-lab)
 - [Method](docs/METHOD.md)
 - [Limitations](docs/LIMITATIONS.md)
 - [Framing and mental models](docs/FRAMING.md)

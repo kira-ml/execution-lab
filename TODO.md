@@ -60,6 +60,7 @@
 - [x] Tests and CI.
 - [x] Calibration module.
 - [x] Short paper/brief.
+- [x] Public GitHub repository and CI.
 - [ ] One external reviewer.
 - [ ] Tagged release.
 - [ ] Freeze.
