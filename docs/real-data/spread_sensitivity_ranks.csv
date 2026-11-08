@@ -1,0 +1,6 @@
+strategy,0.5,0.75,1.0,1.5,2.0
+equal_weight,3,2,2,2,2
+inverse_vol,4,4,4,4,4
+min_variance,5,5,5,5,5
+momentum,2,3,3,3,3
+sixty_forty,1,1,1,1,1

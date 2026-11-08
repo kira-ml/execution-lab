@@ -93,6 +93,8 @@ See [`docs/DATA_LICENSES.md`](docs/DATA_LICENSES.md).
 - Portfolio accounting: gross PV starts at the initial capital; fixed costs reduce net PV.
 - Cost-model equivalence: the analytic `k` decomposition matches a direct cost run.
 - Sensitivity table for \(k\).
+- Spread-proxy sensitivity for the real-data check: 0.5x, 0.75x, 1x, 1.5x, and 2x
+  the Corwin-Schultz estimate, with the rank-flip verdict.
 - One-command demo on synthetic data.
 - A reviewer with execution/microstructure experience — **pending**.
 

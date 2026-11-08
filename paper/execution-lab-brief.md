@@ -70,13 +70,16 @@ to −0.07 at $50B; the low-turnover strategies survive. The AUM at which moment
 net Sharpe crosses zero is roughly $32B in this synthetic panel. That is a stress
 test, not a capacity forecast.
 
-On the **local real-data check** (12 ETFs, 2013–2026, aggregate only), the ranking
-does change: equal weight overtakes momentum once realistic spread and impact
-are charged. The naive 10-bps baseline is not conservative for a wide-spread ETF;
-the VNQ half-spread proxy alone is about 20 bps. Momentum's break-even `k`
-against zero Sharpe is 5.38, and its net Sharpe crosses zero near $28.8B AUM in
-that sample. The result is model-conditional, but it is the first evidence that
-the synthetic stability is not guaranteed.
+On the **local real-data check** (12 ETFs, 2013–2026, aggregate only), the
+ranking changes at the base spread proxy, but the change is not robust. At 0.5×
+the Corwin-Schultz proxy, momentum's net Sharpe (0.429) is above equal weight
+(0.411); at 0.75× the two are effectively tied (0.410 vs 0.407); at 1× equal
+weight is ahead by 0.024. The robust finding is momentum's implementation
+fragility, not a reliable rank flip. The VNQ Corwin-Schultz half-spread proxy is
+about 20 bps, but it is a proxy, not a quote. Momentum's break-even `k` against
+zero Sharpe is 5.38, and its net Sharpe crosses zero near $28.8B AUM in that
+sample. The result is model-conditional; the spread-proxy sensitivity is the
+first evidence that the synthetic stability is not guaranteed.
 
 The more useful output is the **break-even `k`**: the impact coefficient at which
 a strategy's net Sharpe equals its fixed-10bps Sharpe. In the demo:

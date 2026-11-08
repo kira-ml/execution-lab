@@ -14,7 +14,7 @@ This is a research and engineering tool, not a live execution system.
 - Ranking sensitivity across cost models, impact coefficient `k`, and AUM.
 - Break-even `k` and capacity stress, so the output is a range rather than a
   point estimate.
-- One-command synthetic demo, 75 tests, CI, and a one-page brief.
+- One-command synthetic demo, 76 tests, CI, and a one-page brief.
 
 ## Demo headline (synthetic)
 
@@ -26,9 +26,11 @@ stable at $250M AUM but momentum loses its absolute edge as AUM rises.
 ## Real-data check (aggregate only)
 
 On the owner's licensed 12-ETF snapshot (2013–2026), realistic costs change the
-ranking: equal weight overtakes momentum. The VNQ half-spread proxy is about
-20 bps, so the naive 10-bps assumption is not conservative. The raw snapshot is
-not redistributed.
+ranking at the base spread proxy, but the change is not robust: at 0.5× the
+Corwin-Schultz proxy, momentum is ahead of equal weight. The robust finding is
+momentum's implementation fragility, not a reliable rank flip. The VNQ
+Corwin-Schultz half-spread proxy is about 20 bps, but it is a proxy, not a
+quote. The raw snapshot is not redistributed.
 
 ## What is not claimed
 

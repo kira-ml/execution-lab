@@ -92,6 +92,12 @@ trailing median is taken over `spread_window` days, then floored and capped.
 This is a daily-data proxy. It is not a quote, and it cannot separate spread from
 news-driven range on a given day.
 
+`MarketConfig.spread_multiplier` scales the proxy before the floor and cap. It is
+a robustness knob, not a calibration: the real-data check reruns the ranking at
+0.5x, 0.75x, 1x, 1.5x, and 2x the proxy to see whether a conclusion survives a
+different spread assumption. If a quoted-spread series is available, it should be
+supplied through the panel's `spread_bps` column instead.
+
 ---
 
 ## 5. Impact model

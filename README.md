@@ -79,7 +79,9 @@ The trade-off is the point: spreading lowers impact but adds timing risk against
 
 The synthetic demo ranking is **stable** across cost models at $250M AUM because the cost differences are smaller than the gross Sharpe gaps. Capacity still binds: momentum's net Sharpe falls from 0.23 at $25M to −0.07 at $50B, while the low-turnover strategies survive. That is a more honest capacity statement than a forced rank flip.
 
-The **local real-data check** (12 ETFs, 2013–2026, aggregate results only) does show a rank change: equal weight overtakes momentum once realistic spread and impact are charged. The naive 10-bps assumption is not conservative for a wide-spread ETF; the VNQ half-spread proxy alone is about 20 bps. Momentum's break-even `k` against zero Sharpe is 5.38, and its net Sharpe crosses zero around $28.8B AUM in that sample. See [`docs/REAL_DATA_CHECK.md`](docs/REAL_DATA_CHECK.md).
+The **local real-data check** (12 ETFs, 2013–2026, aggregate results only) shows a rank change at the base spread proxy, but the change is **not robust**. At 0.5× the Corwin-Schultz proxy, momentum's net Sharpe (0.429) is above equal weight (0.411); at 0.75× the two are effectively tied (0.410 vs 0.407); at 1× equal weight is ahead by 0.024. The robust finding is momentum's implementation fragility, not a reliable rank flip. The VNQ Corwin-Schultz half-spread proxy is about 20 bps, but it is a proxy, not a quote. Momentum's break-even `k` against zero Sharpe is 5.38, and its net Sharpe crosses zero around $28.8B AUM in that sample. See [`docs/REAL_DATA_CHECK.md`](docs/REAL_DATA_CHECK.md) and [`docs/SPREAD_SENSITIVITY.md`](docs/SPREAD_SENSITIVITY.md).
+
+The real-data check uses the separate **Robustfolio** ETF snapshot; it does not evaluate or consume the **Epistemic DRO 2025–2026 holdout**.
 
 See [`docs/RESULTS.md`](docs/RESULTS.md) for the full synthetic tables and [`docs/METHOD.md`](docs/METHOD.md) for the equations.
 
@@ -129,7 +131,7 @@ src/execution_lab/
   demo.py                     one-command experiment
   cli.py                      command line
 scripts/                      data generation and demo wrappers
-tests/                        75 tests
+tests/                        76 tests
 docs/                         method, limitations, decisions, results
 paper/                        one-page brief
 ```

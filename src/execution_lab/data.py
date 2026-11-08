@@ -376,6 +376,9 @@ def compute_market_state(
     else:
         spread = corwin_schultz_spread_bps(hist).tail(config.spread_window).median()
 
+    # The multiplier is a robustness knob, not a calibration. It lets the
+    # analysis ask whether a conclusion survives a different spread proxy.
+    spread = spread * config.spread_multiplier
     spread = spread.clip(config.spread_floor_bps, config.spread_cap_bps)
     spread = spread.fillna(config.spread_floor_bps)
 

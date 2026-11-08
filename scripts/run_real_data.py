@@ -95,6 +95,11 @@ def main() -> None:
         "> **What it is:** a 12-ETF, daily-data exercise of the same accounting and "
         "sensitivity pipeline. It is still not an execution simulator and it still "
         "cannot identify `k`.\n\n"
+        "> **Provenance:** this uses the separate Robustfolio ETF snapshot; it does "
+        "not evaluate or consume the Epistemic DRO 2025–2026 holdout.\n\n"
+        "> **Robustness:** the rank flip in this report is conditional on the spread "
+        "proxy. See `SPREAD_SENSITIVITY.md` for the 0.5x–2x check; the flip disappears "
+        "at 0.5x and is a tie at 0.75x.\n\n"
         "---\n\n"
     )
     original = REPORT.read_text(encoding="utf-8")

@@ -1,83 +1,162 @@
 # TODO — Execution & Market-Impact Lab
 
-**Status:** v0.1.0 built. Remaining work is external review and release hygiene.
+**Version:** 0.1.0  
+**Status:** Built, tested, and documented. **Not finished by the charter’s acceptance criteria.**  
+**Current binding constraint:** empirical credibility + release/reviewer, not more code.  
+**Audit date:** 2026-11-08
+
+> **Handoff rule:** do not add new features, new data sources, or a UI. Finish the evidence and release, then freeze. Risk Cockpit does not start until this project is frozen.
 
 ---
 
-## Activation gate (historical)
+## 0. Current state (verified)
 
-- [ ] Robustfolio `v1.1.1` tag/release exists or documented hold.
-- [ ] Robustfolio DOI published or documented hold.
-- [ ] Robustfolio external check recorded or documented no-response.
-- [ ] Epistemic DRO frozen at `v1.0.0`; no v4; holdout untouched. **`v1.0.0` tag observed; holdout untouched is not independently verified.**
-- [ ] Epistemic DRO external reader recorded or documented no-response.
-- [ ] Epistemic DRO launch decision recorded.
-- [ ] Portfolio page and synthesis committed/published.
-- [ ] Owner has 8–10 weeks of consistent weekly time — **overridden**; the build was requested on 2026-11-08.
+- [x] Public repo: https://github.com/kira-ml/execution-lab
+- [x] 76 tests pass locally.
+- [x] CI green on Python 3.10, 3.11, 3.12.
+- [x] Synthetic demo runs: 6 tickers, 1,825 daily rows, seed `20261108`.
+- [x] Real-data aggregate check: 12 ETFs, 4,966 daily rows, 2013-01-31 to 2026-09-29.
+- [x] Spread-proxy sensitivity: 0.5x, 0.75x, 1x, 1.5x, 2x; see `docs/SPREAD_SENSITIVITY.md`.
+- [x] No raw vendor data in the repo; manifests and data-license notes exist.
+- [x] Limitations, method, reviewer brief, and decision log exist.
+- [ ] `v0.1.0` tag/release.
+- [ ] External reviewer recorded.
+- [ ] Actual Robustfolio/Epistemic DRO weights loaded.
 
-**The gate was overridden by the owner on 2026-11-08.** See `PROJECT_STATE.md`.
+**Known issue (confirmed and resolved):** the real-data headline originally said the naive 10-bps assumption is not conservative for a “wide-spread ETF.” VNQ is liquid; the **20.21 bps half-spread is a Corwin-Schultz proxy**, not a quote. The base rank flip is only **0.025 Sharpe** post-cost, and it **does not survive** a plausible lower spread: at 0.5x the proxy, momentum's net Sharpe is 0.429 versus equal weight 0.411, so momentum is back ahead. At 0.75x the two are effectively tied (0.410 vs 0.407). The robust finding is momentum's implementation fragility, not a reliable rank change. The README and real-data report are demoted accordingly.
 
 ---
 
-## Phase 0 — Frame
+## 1. P0 — Make the empirical claim robust
 
-- [x] Write the one-page problem/decision statement.
-- [x] Define the user and the decision.
-- [x] List non-goals and data constraints.
-- [x] Write the pre-mortem and kill criteria.
-- [x] Define the acceptance evidence.
+### 1.1 Spread sensitivity
 
-## Phase 1 — Data and baseline
+- [x] Add a spread multiplier sensitivity: **0.5×, 0.75×, 1×, 1.5×, 2×** the Corwin-Schultz proxy.
+- [ ] If a quoted-spread series is legally available, add it as a second proxy. **Not available; the proxy is the only spread source.**
+- [x] Re-run the 12-ETF real-data check for each multiplier.
+- [x] Produce a table: spread multiplier × strategy × net Sharpe and rank.
+- [x] Report whether equal weight still overtakes momentum. **No at 0.5×; tie at 0.75×; yes at 1×–2×.**
+- [x] Add a figure: `docs/real-data/fig_spread_sensitivity.png`.
+- [x] Update `docs/REAL_DATA_CHECK.md` with the robustness result.
+- [x] Update the README headline: the flip is **not robust**; demoted to a conditional secondary result.
+- [x] Do not call VNQ a “wide-spread ETF” without quoted-spread evidence.
 
-- [x] Choose the ETF universe and period for the demo.
-- [x] Build the daily OHLCV/volume ingestion with validation.
-- [x] Define the spread proxy and document limitations.
-- [x] Build a naive fixed-bps baseline.
-- [x] Build a conservative square-root impact baseline.
-- [x] Freeze a small synthetic panel for public reproduction.
-- [x] Add the Corwin-Schultz high-low spread estimator as the fallback proxy.
+**Acceptance:** a reader can see whether the rank flip is robust to the largest uncertainty in the model. **Result:** it is not; the flip disappears at 0.5× and is a tie at 0.75×.
 
-## Phase 2 — Simulator
+### 1.2 Actual portfolio weights
 
-- [x] Implement immediate, TWAP, VWAP, and POV schedules.
-- [x] Compute expected cost and timing variance.
-- [x] Add sensitivity to impact coefficient \(k\).
-- [x] Add tests for monotonicity, limits, and accounting.
-- [x] Produce a one-command demo.
-- [x] Add a risk-aversion frontier.
-- [x] Add 95% cost and CVaR.
+- [ ] Export one real weight history from Robustfolio or Epistemic DRO to the documented CSV schema.
+- [ ] Run the cost model on those weights, not only reconstructed strategies.
+- [ ] Report the cost drag and rank effect on the actual book.
+- [x] If the export is not feasible, explicitly change the integration acceptance criterion to **“integration layer only”** and remove the implied full-integration claim from README/summary. **README and CHARTER now state that actual Robustfolio/Epistemic DRO weights are not loaded.**
+- [ ] Document the exact source, period, and export command.
 
-## Phase 3 — Integration
+**Acceptance:** the project either tests the actual portfolios or clearly says it does not. **Current status: it clearly says it does not; actual-weight integration remains open.**
 
-- [x] Define a target-weight CSV schema compatible with Robustfolio exports.
-- [x] Compare gross, fixed-cost, linear-cost, and impact-aware results.
-- [x] Show ranking sensitivity across cost models and AUM.
-- [x] Document when the ranking changes — and when it does not.
-- [x] Write the limitations.
+### 1.3 Data provenance clarification
 
-## Phase 4 — Evidence
+- [x] Add one sentence to `README.md` and `docs/REAL_DATA_CHECK.md`:
 
-- [x] Tests and CI.
-- [x] Calibration module.
-- [x] Short paper/brief.
-- [x] Public GitHub repository and CI.
-- [ ] One external reviewer.
-- [ ] Tagged release.
-- [ ] Freeze.
+> “This uses the separate Robustfolio ETF snapshot; it does not evaluate or consume the Epistemic DRO 2025–2026 holdout.”
 
-## Optional real-data check
+- [x] Ensure the real-data check does not imply a holdout result.
+- [x] Confirm no Epistemic DRO holdout files or results were used. **`git grep` finds only prose references; no holdout data or results are present.**
 
-- [x] Run the pipeline on the owner's licensed ETF snapshot locally.
-- [x] Record aggregate results without redistributing raw data.
-- [x] Record the observed rank flip: equal weight overtakes momentum under
-      realistic spread and impact on the 12-ETF sample.
-- [x] Record the capacity result: momentum's net Sharpe crosses zero around
-      $28.8B AUM in the sample (interpolated, not a forecast).
-- [ ] Ask an external reviewer to inspect the real-data aggregation.
+**Acceptance:** a reader cannot confuse the Execution Lab data with the Epistemic DRO holdout.
 
-## Open questions
+---
 
-- Which public intraday data, if any, is legally usable for a future calibration?
-- Is a daily-data impact model defensible for a teaching project? Under what assumptions? **Current answer:** only as a ranking/sensitivity tool, never as a live simulator.
-- Which existing portfolio should be the primary integration case? **Current answer:** the generic target-weight schema, with a synthetic demo book; a Robustfolio export can be plugged in without code changes.
-- What is the minimum evidence that makes the cost model credible? **Current answer:** documented accounting, monotonicity tests, a `k` range, break-even analysis, and an honest statement that `k` is not identified.
+## 2. P0 — Release and external review
+
+### 2.1 Release `v0.1.0`
+
+- [ ] Confirm working tree clean and tests green.
+- [ ] Confirm no raw data or secrets in the release.
+- [ ] Create tag `v0.1.0`.
+- [ ] Create GitHub release with:
+  - synthetic demo report and figures;
+  - aggregate real-data tables and figures;
+  - method/limitations/reviewer brief;
+  - no raw vendor data.
+- [ ] Add repo topics: `execution`, `market-impact`, `transaction-costs`, `portfolio-construction`, `quantitative-finance`, `reproducibility`.
+- [ ] Verify release links and asset downloads.
+
+**Owner approval required for the public tag/release.**
+
+### 2.2 External review
+
+- [ ] Send one request to an execution/microstructure/quant reviewer using `docs/REVIEW.md`.
+- [ ] Ask the specific questions:
+  - Is the Corwin-Schultz proxy appropriate for ETFs, or does it overstate spread?
+  - Is arrival-price timing risk the right benchmark?
+  - Is the square-root `k` range reasonable?
+  - Does the rank flip survive a spread correction?
+- [ ] Record reviewer, scope, strongest objection, and action.
+- [ ] If no response after two follow-ups, record the attempt and freeze with “external review requested; none recorded.”
+
+**Acceptance:** one external objection recorded, or a documented attempt.
+
+---
+
+## 3. P1 — Engineering hygiene
+
+- [ ] Add `ruff` to `[project.optional-dependencies].dev` and run it.
+- [ ] Add a lint step to CI.
+- [ ] Optionally add `mypy` only if it does not create noise; do not block on it.
+- [ ] Keep CI on Python 3.10–3.12.
+- [ ] Re-run the demo on CI and confirm the artifact upload.
+
+---
+
+## 4. P2 — Optional, only if it changes a decision
+
+- [ ] Add a direct comparison of observed quoted spreads vs the Corwin-Schultz proxy.
+- [ ] Add an intraday calibration only if legally usable data exists.
+- [ ] Add a small `spread_sensitivity` CLI flag if it makes the check reproducible.
+- [ ] Do not add a UI, broker connection, order router, RL, deep learning, or LLM.
+
+---
+
+## 5. Stop rules
+
+- [ ] No new features until P0 is done.
+- [ ] No new project until this repo is frozen.
+- [ ] No raw vendor data in the repo/release.
+- [ ] No order-book realism claim without order-book data.
+- [ ] No live-trading or alpha claim.
+- [ ] If spread sensitivity kills the headline, report that; do not tune the proxy to preserve it.
+- [ ] If a task exceeds its estimate by 50%, stop and reassess.
+- [ ] After release/reviewer, freeze v0.1.0 and start Risk Cockpit only then.
+
+---
+
+## 6. Definition of done
+
+- [x] Spread sensitivity added; rank-flip robustness stated honestly. **The flip is not robust.**
+- [ ] Actual weights integrated **or** integration claim explicitly downgraded.
+- [x] Provenance sentence added; holdout not implicated.
+- [ ] `v0.1.0` release exists and assets download.
+- [ ] External reviewer recorded or documented attempt.
+- [ ] Tests, CI, and demo green.
+- [ ] README headline matches the evidence.
+- [ ] Repo frozen; no endless polishing.
+
+---
+
+## 7. Open questions
+
+- Which public intraday data, if any, is legally usable for calibration?
+- Is a daily-data impact model defensible as a ranking/sensitivity tool? Current answer: yes, if clearly bounded.
+- Which portfolio should be the first real-weight integration: Robustfolio or Epistemic DRO?
+- What is the minimum external review that makes the cost model credible?
+- Does the real-data rank flip survive a plausible spread correction? **No. It disappears at 0.5× and is a tie at 0.75×; the robust finding is momentum's fragility.**
+
+---
+
+## 8. Evidence standard
+
+- **Verified:** command/test/repo evidence exists.
+- **Assumed:** modelling choice or proxy.
+- **Proposed:** next step not yet executed.
+
+Do not blur these categories in the README, release notes, or reviewer response.

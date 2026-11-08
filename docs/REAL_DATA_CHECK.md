@@ -3,6 +3,8 @@
 > **Data note:** this is a local validation on the owner's licensed Yahoo Finance ETF snapshot. The raw snapshot is **not** redistributed. Only aggregate tables and figures are committed. This is not the public reproduction path; run `execution-lab demo` for the synthetic path.
 
 > **What it is:** a 12-ETF, daily-data exercise of the same accounting and sensitivity pipeline. It is still not an execution simulator and it still cannot identify `k`.
+>
+> **Provenance:** this uses the separate Robustfolio ETF snapshot; it does not evaluate or consume the Epistemic DRO 2025–2026 holdout.
 
 ---
 
@@ -73,7 +75,7 @@ Every strategy is run on the same gross return path, then charged under each cos
 | momentum | 2 | 2 | 2 | 3 | 3 |
 | sixty_forty | 1 | 1 | 1 | 1 | 1 |
 
-The ranking changes under at least one cost assumption. The rows below isolate the changes relative to gross Sharpe.
+The ranking changes under at least one cost assumption **at the base spread proxy**. The change is not robust to the level of that proxy; see the robustness paragraph below and [`SPREAD_SENSITIVITY.md`](SPREAD_SENSITIVITY.md). The rows below isolate the changes relative to gross Sharpe.
 
 | model | strategy | gross_rank | model_rank | rank_change |
 | --- | --- | --- | --- | --- |
@@ -97,6 +99,14 @@ The ranking changes under at least one cost assumption. The rows below isolate t
 | inverse_vol | 0.256 | 0.235 | 0.021 |
 | equal_weight | 0.414 | 0.409 | 0.006 |
 | sixty_forty | 0.658 | 0.654 | 0.005 |
+
+**Spread-proxy robustness.** The base ranking is not robust to the spread level.
+At 0.5× the Corwin-Schultz proxy, momentum's net Sharpe is 0.429 versus equal
+weight 0.411, so the flip disappears; at 0.75× the two are effectively tied
+(0.410 vs 0.407). At 1× equal weight is ahead by 0.024, and at 1.5×/2× by
+0.067/0.100. The robust finding is momentum's implementation fragility, not a
+reliable rank change. The proxy is not a quote. See
+[`SPREAD_SENSITIVITY.md`](SPREAD_SENSITIVITY.md).
 
 ## 4. Sensitivity to the impact coefficient
 

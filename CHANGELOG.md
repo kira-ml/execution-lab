@@ -19,7 +19,7 @@ Initial build.
   - Markdown/CSV/PNG reporting.
 - `execution-lab` CLI: `demo`, `simulate`, `sensitivity`, `rank`, `calibrate`.
 - Checked-in synthetic demo panel (seed `20261108`, 6 tickers, 2018–2024).
-- 75 tests covering data validation, point-in-time state, cost accounting,
+- 76 tests covering data validation, point-in-time state, cost accounting,
   schedule constraints, impact monotonicity, portfolio accounting, cost-model
   equivalence, calibration, CLI, and an end-to-end demo.
 - GitHub Actions CI for Python 3.10–3.12.
@@ -27,6 +27,8 @@ Initial build.
 - One-page brief.
 - Local real-data check on the owner's licensed 12-ETF snapshot, aggregate-only:
   `docs/REAL_DATA_CHECK.md` and `docs/real-data/`.
+- Spread-proxy sensitivity (0.5x–2x Corwin-Schultz): the rank flip is not robust;
+  it disappears at 0.5x and is a tie at 0.75x. `docs/SPREAD_SENSITIVITY.md`.
 
 ### Known limitations
 

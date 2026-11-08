@@ -25,7 +25,7 @@ not described as a satisfied gate.
 
 These are facts from commands that were actually run:
 
-- `python -m pytest` passes **75 tests**.
+- `python -m pytest` passes **76 tests**.
 - `python -m execution_lab.cli demo --out results/demo` completes and writes
   `report.md`, tables, figures, and a manifest.
 - The checked-in synthetic panel is `data/demo/etf_daily.csv`, 1,825 rows × 6
@@ -37,9 +37,14 @@ These are facts from commands that were actually run:
 - The project builds and imports as an editable package.
 - The local real-data check completed on the owner's licensed 12-ETF snapshot
   (2013-01-31 to 2026-09-29), producing aggregate-only tables in
-  `docs/real-data/` and `docs/REAL_DATA_CHECK.md`. On that panel the ranking
-  changes: equal weight overtakes momentum under realistic spread and impact.
-  Momentum's net Sharpe crosses zero at roughly $28.8B AUM in the sample.
+  `docs/real-data/` and `docs/REAL_DATA_CHECK.md`. At the base spread proxy,
+  equal weight overtakes momentum under realistic spread and impact. Momentum's
+  net Sharpe crosses zero at roughly $28.8B AUM in the sample.
+- The spread-proxy sensitivity completed: at 0.5x the Corwin-Schultz proxy the
+  flip disappears (momentum 0.429 vs equal weight 0.411); at 0.75x the two are
+  effectively tied (0.410 vs 0.407); at 1x equal weight is ahead by 0.024. The
+  robust finding is momentum's implementation fragility, not a reliable rank
+  change. See `docs/SPREAD_SENSITIVITY.md`.
 
 ## Assumed
 
@@ -60,10 +65,12 @@ not identified by the data.
 - External reviewer with execution or microstructure experience.
 - Tagged `v0.1.0` GitHub release.
 - Public GitHub repository upload.
-- External read of `docs/REAL_DATA_CHECK.md`; the local run is complete and the
-  aggregate evidence is committed.
-- Decide whether the real-data rank flip is robust enough to headline, or
-  whether it stays a secondary check behind the synthetic public demo.
+- External read of `docs/REAL_DATA_CHECK.md` and
+  `docs/SPREAD_SENSITIVITY.md`; the local run and the robustness check are
+  complete.
+- **Resolved:** the real-data rank flip is not robust; it is demoted to a
+  conditional secondary result, while momentum's implementation fragility stays
+  the headline real-data finding.
 
 ---
 

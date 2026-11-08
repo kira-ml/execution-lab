@@ -202,9 +202,11 @@ crosses zero.
 - A legally usable intraday dataset that identifies `k` out of sample.
 - An external reviewer who finds a unit/accounting error.
 - A portfolio integration that shows the ranking is unstable on real data.
-  **Observed:** the local 12-ETF check does show a rank flip — equal weight
-  overtakes momentum under realistic spread and impact. That is evidence against
-  treating the synthetic stability as general.
+  **Observed:** the local 12-ETF check shows a rank flip at the base spread
+  proxy, but the spread-multiplier sensitivity shows that it disappears at 0.5x
+  and is a tie at 0.75x. The robust finding is momentum's implementation
+  fragility, not a reliable rank flip. That is evidence against treating either
+  the synthetic stability or the base real-data flip as general.
 - A scope request for live routing — that is a different project, and the answer
   is no.
 

@@ -81,6 +81,16 @@ def test_market_state_is_point_in_time(panel):
     pd.testing.assert_series_equal(full.spread_bps, truncated.spread_bps)
 
 
+def test_spread_multiplier_scales_the_proxy(panel):
+    from execution_lab.config import MarketConfig
+
+    asof = panel.close.index[-1]
+    base = compute_market_state(panel, asof, MarketConfig())
+    doubled = compute_market_state(panel, asof, MarketConfig(spread_multiplier=2.0))
+    expected = (base.spread_bps * 2.0).clip(1.0, 100.0)
+    pd.testing.assert_series_equal(doubled.spread_bps, expected, check_names=False)
+
+
 def test_market_state_uses_trailing_windows(panel):
     asof = panel.close.index[-1]
     state = compute_market_state(panel, asof)

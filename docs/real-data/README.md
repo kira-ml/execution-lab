@@ -16,11 +16,15 @@ redistributed.
 
 ## Headline
 
-The ranking changes under realistic costs: equal weight overtakes momentum once
-spread and impact are charged. The VNQ half-spread proxy is about 20 bps, so the
-naive 10-bps baseline is not conservative for that asset. Momentum's break-even
-`k` against zero Sharpe is 5.38; its net Sharpe crosses zero around $28.8B AUM in
-this sample (linear interpolation, not a capacity forecast).
+The ranking changes at the base spread proxy: equal weight overtakes momentum
+once spread and impact are charged. The change is **not robust**: at 0.5× the
+Corwin-Schultz proxy, momentum's net Sharpe (0.429) is above equal weight
+(0.411), and at 0.75× the two are effectively tied. The robust finding is
+momentum's implementation fragility, not a reliable rank flip. The VNQ
+Corwin-Schultz half-spread proxy is about 20 bps, but it is a proxy, not a
+quote. Momentum's break-even `k` against zero Sharpe is 5.38; its net Sharpe
+crosses zero around $28.8B AUM in this sample (linear interpolation, not a
+capacity forecast).
 
 ## Files
 
@@ -38,6 +42,11 @@ this sample (linear interpolation, not a capacity forecast).
 | `aum_ranks.csv` | rank pivot over AUM |
 | `order_schedule_comparison.csv` | one-order schedule comparison |
 | `optimal_by_risk_aversion.csv` | best schedule by risk aversion |
+| `spread_sensitivity.csv` | full results over 0.5x–2x spread multipliers |
+| `spread_sensitivity_sharpes.csv` | net Sharpe pivot over multipliers |
+| `spread_sensitivity_ranks.csv` | rank pivot over multipliers |
+| `spread_sensitivity_gap.csv` | equal-weight vs momentum gap |
+| `fig_spread_sensitivity.png` | net Sharpe vs spread multiplier |
 | `fig_*.png` | aggregate figures |
 
 ## Caveat

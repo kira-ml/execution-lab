@@ -202,6 +202,35 @@ def plot_aum_sensitivity(frame: pd.DataFrame, path: str | Path) -> Path:
     return path
 
 
+def plot_spread_sensitivity(frame: pd.DataFrame, path: str | Path) -> Path:
+    """Net Sharpe vs spread multiplier for each strategy.
+
+    ``frame`` must have ``spread_multiplier``, ``strategy``, and ``sharpe``
+    columns, already filtered to one cost model.
+    """
+    path = _path(path)
+    fig, ax = plt.subplots(figsize=(6.4, 4.0))
+    for strategy, group in frame.groupby("strategy", sort=False):
+        group = group.sort_values("spread_multiplier")
+        ax.plot(
+            group["spread_multiplier"],
+            group["sharpe"],
+            marker="o",
+            markersize=3,
+            label=str(strategy),
+        )
+    ax.axvline(1.0, color="black", linewidth=0.8, linestyle="--", alpha=0.6)
+    ax.set_xlabel("Spread multiplier applied to the Corwin-Schultz proxy")
+    ax.set_ylabel("Net Sharpe (5-day VWAP impact)")
+    ax.set_title("Does the ranking survive a different spread assumption?")
+    ax.legend(fontsize=7, frameon=False)
+    ax.grid(alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(path)
+    plt.close(fig)
+    return path
+
+
 def plot_cost_decomposition(frame: pd.DataFrame, path: str | Path) -> Path:
     """Stacked average cost decomposition by strategy for one model."""
     path = _path(path)

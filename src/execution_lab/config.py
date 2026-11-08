@@ -24,6 +24,7 @@ class MarketConfig:
     spread_window: int = 20
     spread_floor_bps: float = 1.0
     spread_cap_bps: float = 100.0
+    spread_multiplier: float = 1.0
 
     def __post_init__(self) -> None:
         if self.adv_window < 2:
@@ -34,6 +35,8 @@ class MarketConfig:
             raise ValueError("spread_window must be at least 2")
         if not 0 <= self.spread_floor_bps <= self.spread_cap_bps:
             raise ValueError("spread floor must be between 0 and the cap")
+        if self.spread_multiplier <= 0:
+            raise ValueError("spread_multiplier must be positive")
 
 
 @dataclass(frozen=True)
